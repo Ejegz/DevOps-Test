@@ -1,0 +1,14 @@
+- name: Install and configure Nginx
+  become: true
+  hosts: localhost   #"{{ ansible_host }}"
+  tasks:
+    - name: Install Nginx
+      apt:
+        name: nginx
+        update_cache: yes
+    - name: Start Nginx service
+      service:
+        name: nginx
+        state: started
+        enabled: yes
+
