@@ -73,11 +73,13 @@ In order to accomodate growth of the application, the Terraform can help largely
 
 1. SSL certificates: Due to the requirements and personalizations while generating and mapping ssl certificates to the nginx web server, i decided to ssh into the instance with the ip address generated after terraform creates the EC2. The IP address can be found after terraform apply in the ip_address.txt file.
 
-2. Deployment: I am very familiar with using CI/CD tools for integration and deployments, however, i was unable to integrate the CI/CD pipeline from Github actions because of the time constraints for submitting this project. 
+2. Deployment: I am very familiar with using CI/CD tools for integration and deployments, however, i was unable to integrate the CI/CD pipeline from Github    actions because of the time constraints for submitting this project. 
 
-If i were tasked to do this, i would create a pipeline from the repository of the application, connect it to the EC2 that terraform creates and the make use of pipeline yaml scripts to handle deployments on every push or merge from the required branch.
+   If i were tasked to do this, i would create a pipeline from the repository of the application, connect it to the EC2 that terraform creates and the make use of pipeline yaml scripts to handle deployments on every push or merge from the required branch.
 
-To solve this issue in a timely manner, i have simply made use of a bash script to clone the repository code and run all build and startup commands for the application.
+   To solve this issue in a timely manner, i have simply made use of a bash script to clone the repository code and run all build and startup commands for the application.
+
+3. Creation of DNS: Due to the assumption of working with a production environment, also, cost of buying a new domain name, I made use of an existing domain name that i have just for the use of this project. The DNS name was shared on the email for submitting this project.
 
 # Credits 
 
