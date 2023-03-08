@@ -28,6 +28,11 @@ resource "aws_instance" "testEC2" {
     destination = "/home/ubuntu/nginx.yml"
   }
 
+  provisioner "file" {
+    source      = "script.sh"
+    destination = "/home/ubuntu/script.sh"
+  }
+
   provisioner "local-exec" {
     command = "echo '${aws_instance.testEC2.public_ip}' > ip_address.txt"
   }
@@ -35,13 +40,15 @@ resource "aws_instance" "testEC2" {
   provisioner "remote-exec" {
   inline = [
     "echo 'Executing remote commands...'",
+    "sudo apt-get update",
+    "sudo apt-get install -y git",
     "sudo apt-add-repository --yes --update ppa:ansible/ansible",
     "sudo apt install -y ansible",
     "echo 'starting ansible ........'",
     "export ansible_host=$(curl ifconfig.me)",
 #    "sleep 30 && ansible-playbook -i '${self.public_ip},' nginx.yml"
-    "sleep 30 && ansible-playbook /home/ubuntu/nginx.yml --extra-vars ansible_host=$(ansible_host)"
-#    "sleep 30 && ansible-playbook -i '${aws_instance.testEC2.public_ip},' nginx.yml"
+    "sleep 30 && ansible-playbook /home/ubuntu/nginx.yml --extra-vars ansible_host=$(ansible_host)",
+    "chmod +x /home/ubuntu/script.sh && bash /home/ubuntu/script.sh"
   ]
 
   connection {
