@@ -24,24 +24,24 @@ Ansible (version [core 2.14.3] or higher)
 
 2. Initialize the working directory: 
         Navigate to the directory where your configuration file is located and run the command 
-                                              terraform init 
+                                              "terraform init" 
 in your terminal or command prompt. This will download the required Terraform providers and modules for your project.
 
 3. Plan your changes: 
         Run the command 
-                        terraform plan 
+                        "terraform plan" 
         to generate an execution plan for the changes you want to make. This will show you a preview of the resources that Terraform will create, modify, or delete based on your configuration file.
 
 4. Apply the changes: 
         Run the command 
-                        terraform apply
+                        "terraform apply"
  to apply the changes to your infrastructure. Terraform will create, modify, or delete the resources specified in your configuration file.
         To avoid unwanted prompts, use the command
-                        terraform apply -auto-approve
+                        "terraform apply -auto-approve"
 
 5. Destroy the resources: 
         If you want to delete the resources created by your Terraform project, you can run the command 
-                        terraform destroy 
+                        "terraform destroy"
 This will remove all the resources created by your configuration file.
 
 
