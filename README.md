@@ -15,10 +15,11 @@ This repository includes code for a production ready web application server envi
 # Requirements
 Before running the application, ensure you have the following installed:
 
-Terraform (Preferably version  v1.3.9 or higher)
-Ansible (version [core 2.14.3] or higher)
+1. Terraform (Preferably version  v1.3.9 or higher)
+2. Ansible (version [core 2.14.3] or higher)
+3. AWS Account
 
-# Installation
+# Installation and Implimentation
 1. Clone the repository:
         git clone https://github.com/Ejegz/DevOps-Test.git
 
@@ -44,4 +45,41 @@ in your terminal or command prompt. This will download the required Terraform pr
                         "terraform destroy"
 This will remove all the resources created by your configuration file.
 
+
+# Considerations:
+
+1. Monitoring and maintenance:
+For monitoring, Datadog would be used. 
+Datadog is a powerful SaaS-based infrastructure monitoring service with multiple integrations. It would enable the DevOps team to keep tabs on the cloud environment to visualize the health of your infrastructure. This is not just limited to the Cloud resources created by this project but could help monitor other resources already created in this cloud environment.
+
+Reasons for choosing Datadog:
+
+* Datadog has monitors to notify appropriate individuals once critical alerts are triggered.
+* It is open-source, meaning it’s easy to dig into the code and understand how it collects metrics
+
+2. Capacity and growth:
+
+In order to accomodate growth of the application, the Terraform can help largely in scaling up and scaling down cloud resources.
+
+* Scaling EC2 instances: To address the increased load as your application's consumption increases, you might need to add extra EC2 instances. An auto-scaling group that automatically adds or removes EC2 instances based on metrics like CPU consumption or network traffic can be defined using Terraform.
+
+* Updating EC2 instances: Your application's size and performance needs may change over time. To handle increasing traffic, Terraform may assist you in upgrading your EC2 instances to bigger, more capable ones.
+
+* Handling databases: You might need to add or remove databases as your application expands in order to accommodate the growing amount of data. As well as setting up database backups and replicas, Terraform can help you provision and manage databases like Amazon RDS instances or DynamoDB tables.
+
+* Adding or removing load balancers to spread traffic across different instances may be necessary as traffic to the EC2 instances grows. Load balancers can be provisioned and maintained with Terraform, as well as health checks.
+
+# None automated tasks
+
+1. SSL certificates: Due to the requirements and personalizations while generating and mapping ssl certificates to the nginx web server, i decided to ssh into the instance with the ip address generated after terraform creates the EC2. The IP address can be found after terraform apply in the ip_address.txt file.
+
+2. Deployment: I am very familiar with using CI/CD tools for integration and deployments, however, i was unable to integrate the CI/CD pipeline from Github actions because of the time constraints for submitting this project. 
+
+If i were tasked to do this, i would create a pipeline from the repository of the application, connect it to the EC2 that terraform creates and the make use of pipeline yaml scripts to handle deployments on every push or merge from the required branch.
+
+To solve this issue in a timely manner, i have simply made use of a bash script to clone the repository code and run all build and startup commands for the application.
+
+# Credits 
+
+This repository was created by Jesse Ejegi-memeh as part of DevOps Test project. Feel free to use and modify the code as necessary. If you have any questions or suggestions, please don't hesitate to get in touch.
 
