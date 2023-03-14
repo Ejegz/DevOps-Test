@@ -69,7 +69,7 @@ In order to accomodate growth of the application, the Terraform can help largely
 
 * Adding or removing load balancers to spread traffic across different instances may be necessary as traffic to the EC2 instances grows. Load balancers can be provisioned and maintained with Terraform, as well as health checks.
 
-# None automated tasks
+# Non-automated tasks
 
 1. SSL certificates: Due to the requirements and personalizations while generating and mapping ssl certificates to the nginx web server, i decided to ssh into the instance with the ip address generated after terraform creates the EC2. The IP address can be found after terraform apply in the ip_address.txt file.
 
